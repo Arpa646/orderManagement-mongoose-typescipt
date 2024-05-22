@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express';
 
 import mongoose from 'mongoose';
 import { OrderServices } from './order.service';
+import orderSchema from './order.validation';
 
 
 
@@ -11,9 +12,10 @@ const createOrder= async (req: Request, res: Response) => {
       const order = req.body;
      
     const orderproductId=order.productId;
-    console.log('proid',orderproductId);
-  
-      const result = await OrderServices.createOrderIntoDb(order,orderproductId);
+    // console.log('proid',orderproductId);
+    const {error,value }=orderSchema.validate(order);
+    console.log(error,value);
+      const result = await OrderServices.createOrderIntoDb(value,orderproductId);
   
       console.log(result);
   

@@ -1,18 +1,19 @@
 import express, { Request, Response } from 'express';
 import { ProductServices } from './product.service';
-import studentvalidationSchema from './student.validation';
+
 import mongoose from 'mongoose';
 import { ProductModel } from './product.model';
+import productSchema from './product.validation';
 
 const createProduct = async (req: Request, res: Response) => {
   try {
     const product = req.body;
 
-    // const {error,value }=studentvalidationSchema.validate(student);
-    // console.log(error,value);
-    console.log('from body', product);
+    const {error,value }=productSchema.validate(product);
+    console.log(error,value);
+    // console.log('from body', product);
 
-    const result = await ProductServices.createProductIntoDb(product);
+    const result = await ProductServices.createProductIntoDb(value);
 
     console.log(result);
 
