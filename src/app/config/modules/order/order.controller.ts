@@ -1,19 +1,18 @@
 import express, { Request, Response } from 'express';
-import { ProductServices } from './product.service';
+
 
 import mongoose from 'mongoose';
+import { OrderServices } from './order.service';
 
 
 
 const createOrder= async (req: Request, res: Response) => {
     try {
       const order = req.body;
-  
-      // const {error,value }=studentvalidationSchema.validate(student);
-      // console.log(error,value);
       console.log('from body', order);
+    
   
-      const result = await ProductServices.createOrderIntoDb(order);
+      const result = await OrderServices.createOrderIntoDb(order);
   
       console.log(result);
   
@@ -36,6 +35,26 @@ const createOrder= async (req: Request, res: Response) => {
   };
 
 
-  export const productsControllers = {
-    createOrder
+  const getAllorder = async (req: Request, res: Response) => {
+    try {
+        const email=req.query.email
+    console.log(typeof(email))
+      const result = await OrderServices.getAllOrderFromDB(email);
+  
+      res.status(200).json({
+        success: true,
+        message: 'Students are retrieved succesfully',
+        data: result,
+      });
+    } catch (err: any) {
+      res.status(500).json({
+        success: false,
+        message: err.message || 'something went wrong',
+        error: err,
+      });
+    }
+  };
+
+  export const ordersControllers = {
+    createOrder,getAllorder
   };

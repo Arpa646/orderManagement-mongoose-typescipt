@@ -6,8 +6,31 @@ const createOrderIntoDb = async (order: OrderData) => {
   
     return result;
   };
-  export const OrderServices = {
-    createOrderIntoDb
+
+  const getAllOrderFromDB = async (email: string) => {
   
+  
+        // Check if the email is provided and it's a valid email format
+      
+        if (email) {
+            const orders = await OrdertModel.find({ email });
+            return orders;
+        }
+        else{
+            const orders = await OrdertModel.find();
+            return orders; 
+        }
+      
+        // Query orders by email
+      
+      };
+      
+
+
+
+
+  export const OrderServices = {
+    createOrderIntoDb,
+    getAllOrderFromDB,
   };
   

@@ -5,20 +5,20 @@ import { OrderData } from './order.interface';
 
 const orderSchema = new Schema<OrderData>({
     email: {
-        type: String,
-        required: true
+        type: String
+    
     },
     productId: {
-        type: String,
-        required: true
+        type: String
+      
     },
     price: {
-        type: Number,
-        required: true
+        type: Number
+       
     },
     quantity: {
-        type: Number,
-        required: true
+        type: Number
+        
     }
 });
 
