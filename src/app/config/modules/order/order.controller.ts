@@ -27,7 +27,7 @@ const createOrder = async (req: Request, res: Response) => {
         message: 'Insufficient quantity available in inventory',
       });
     }
-
+//check error if product not found
     if ((error as Error).message === 'Product not found') {
       return res.status(400).json({
         success: false,
