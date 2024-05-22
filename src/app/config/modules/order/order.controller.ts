@@ -43,7 +43,7 @@ const createOrder = async (req: Request, res: Response) => {
     });
   }
 };
-
+// get all orer from db
 const getAllorder = async (req: Request, res: Response) => {
   try {
     // const email = req.query.email;
