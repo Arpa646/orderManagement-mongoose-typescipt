@@ -12,7 +12,7 @@ const inventorySchema = new Schema({
 });
 
 const productSchema = new Schema<Product>({
-  id: { type: String },
+  productId: { type: String },
   name: { type: String },
   description: { type: String },
   price: { type: Number },

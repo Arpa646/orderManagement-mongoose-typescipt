@@ -9,10 +9,11 @@ import { OrderServices } from './order.service';
 const createOrder= async (req: Request, res: Response) => {
     try {
       const order = req.body;
-      console.log('from body', order);
-    
+     
+    const orderproductId=order.productId;
+    console.log('proid',orderproductId);
   
-      const result = await OrderServices.createOrderIntoDb(order);
+      const result = await OrderServices.createOrderIntoDb(order,orderproductId);
   
       console.log(result);
   

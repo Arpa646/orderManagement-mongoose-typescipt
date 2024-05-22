@@ -4,7 +4,7 @@ const router=express.Router();
 
 router.get('/', productsControllers.getAllproducts);
 //will cal co nteoller function
-router.post('/createProduct',productsControllers.createProduct);
+router.post('/',productsControllers.createProduct);
 
 router.get('/:productId', productsControllers.getSingleProduct);
 router.delete('/:productId', productsControllers.deleteProduct);

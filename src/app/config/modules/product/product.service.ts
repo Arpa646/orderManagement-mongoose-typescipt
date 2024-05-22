@@ -37,7 +37,7 @@ const deleteProductFromDB = async (id: string) => {
 };
 
 const getSingleProductFromDB = async (id: string) => {
-  const result = await ProductModel.findOne({ id: id });
+  const result = await ProductModel.findOne({ productId: id });
   return result;
 };
 const ProductUpdateFromDB = async (id: string, productData: object) => {

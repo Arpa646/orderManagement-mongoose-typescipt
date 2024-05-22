@@ -1,10 +1,38 @@
+import { ProductModel } from "../product/product.model";
 import { OrderData } from "./order.interface";
 import { OrdertModel } from "./order.model";
 
-const createOrderIntoDb = async (order: OrderData) => {
+const createOrderIntoDb = async (order: OrderData,orderproductId:string) => {
+
+
+  //  const product = await ProductModel.findById(orderproductId);
+   const product = await ProductModel.findOne({ productId: orderproductId });
+   if (!product) {
+    throw new Error('Product not found');
+}
+
+if (product.inventory.quantity < order.quantity) {
+  throw new Error('Insufficient quantity in stock');
+}
+
+
+console.log('matches produt',product)
+
+
+
     const result = await OrdertModel.create(order);
-  
+    product.inventory.quantity -= order.quantity;
+    product.inventory.inStock = product.inventory.quantity > 0;
+    await product.save();
+
+
+
     return result;
+
+
+
+
+
   };
 
   const getAllOrderFromDB = async (email: string) => {
