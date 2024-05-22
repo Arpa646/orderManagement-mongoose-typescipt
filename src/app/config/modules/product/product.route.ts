@@ -19,5 +19,5 @@ router.put('/:productId', productsControllers.updateProduct);
 
 
 
-//router.delete('/:studentId', StudentControllers.deleteStudent);
+
 export const productRoute=router;

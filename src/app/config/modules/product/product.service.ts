@@ -26,10 +26,6 @@ const getAllProductsFromDB = async (searchTerm: string) => {
   return result;
 };
 
-//   const getSingleStudentFromDB = async (id: string) => {
-//     const result = await Student.aggregate([{ $match: { id } }]);
-//     return result;
-//   };
 
 const deleteProductFromDB = async (id: string) => {
   const result = await ProductModel.deleteOne({ _id: id});
