@@ -32,12 +32,12 @@ const getAllProductsFromDB = async (searchTerm: string) => {
 //   };
 
 const deleteProductFromDB = async (id: string) => {
-  const result = await ProductModel.deleteOne({ productId: id});
+  const result = await ProductModel.deleteOne({ _id: id});
   return result;
 };
 
 const getSingleProductFromDB = async (id: string) => {
-  const result = await ProductModel.findOne({ productId: id });
+  const result = await ProductModel.findOne({ _id: id });
   return result;
 };
 const ProductUpdateFromDB = async (id: string, productData: object) => {

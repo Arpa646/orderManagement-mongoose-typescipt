@@ -1,29 +1,27 @@
-import express, { Request, Response } from 'express';
+import  { Request, Response } from 'express';
 import { ProductServices } from './product.service';
 
 import mongoose from 'mongoose';
-import { ProductModel } from './product.model';
+
 import productSchema from './product.validation';
 
 const createProduct = async (req: Request, res: Response) => {
   try {
     const product = req.body;
 
-    const {error,value }=productSchema.validate(product);
-    console.log(error,value);
+    const { error, value } = productSchema.validate(product);
+    console.log(error, value);
     // console.log('from body', product);
 
     const result = await ProductServices.createProductIntoDb(value);
 
     console.log(result);
 
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: 'product is created succesfully',
-        data: result,
-      });
+    res.status(200).json({
+      success: true,
+      message: 'product is created succesfully',
+      data: result,
+    });
   } catch (err: any) {
     {
       res.status(500).json({
@@ -38,7 +36,8 @@ const getAllproducts = async (req: Request, res: Response) => {
   try {
     console.log(req.query.searchTerm);
 
-    const param = req.query.searchTerm;
+    const param: string = req.query.searchTerm as string;
+
     const result = await ProductServices.getAllProductsFromDB(param);
 
     res.status(200).json({
@@ -58,7 +57,7 @@ const getAllproducts = async (req: Request, res: Response) => {
 const getSingleProduct = async (req: Request, res: Response) => {
   try {
     const ProductId = req.params.productId;
-    console.log(ProductId);
+    console.log('product', ProductId);
     const result = await ProductServices.getSingleProductFromDB(ProductId);
 
     res.status(200).json({
@@ -75,29 +74,6 @@ const getSingleProduct = async (req: Request, res: Response) => {
   }
 };
 
-// const searchProducts = async (req: Request, res: Response) => {
-//   try {
-//       const searchTerm = req.query.searchTerm;
-// console.log(searchTerm)
-//       // Perform the search query based on the searchTerm
-//      const products = await ProductServices.SearchProductFromDB(searchTerm);
-// console.log(req.query)
-
-//      // const products = await ProductModel.find(req.query);
-
-//       res.status(200).json({
-//           success: true,
-//           message: `Products matching search term '${searchTerm}' fetched successfully!`,
-//           data: products
-//       });
-//   } catch (error) {
-//       console.error('Error searching products:', error);
-//       res.status(500).json({
-//           success: false,
-//           message: 'Internal server error'
-//       });
-//   }
-// };
 
 const deleteProduct = async (req: Request, res: Response) => {
   try {
@@ -132,6 +108,7 @@ const updateProduct = async (req: Request, res: Response) => {
     }
 
     const productData = req.body;
+    
 
     // Update product information in the database
     const updatedProduct = await ProductServices.ProductUpdateFromDB(

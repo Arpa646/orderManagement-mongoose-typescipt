@@ -6,7 +6,8 @@ const createOrderIntoDb = async (order: OrderData,orderproductId:string) => {
 
 
   //  const product = await ProductModel.findById(orderproductId);
-   const product = await ProductModel.findOne({ productId: orderproductId });
+   const product = await ProductModel.findOne({ _id: orderproductId });
+   console.log(product)
    if (!product) {
     throw new Error('Product not found');
 }

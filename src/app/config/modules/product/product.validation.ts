@@ -1,4 +1,5 @@
-const Joi = require('joi');
+
+import Joi from 'joi'
 
 // Define Joi schema for variant
 const variantSchema = Joi.object({
@@ -14,7 +15,7 @@ const inventorySchema = Joi.object({
 
 // Define Joi schema for product
 const productSchema = Joi.object({
-    productId: Joi.string().required(),
+ 
     name: Joi.string().required(),
     description: Joi.string().required(),
     price: Joi.number().positive().required(),

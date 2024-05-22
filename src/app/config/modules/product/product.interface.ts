@@ -1,4 +1,4 @@
-import { Schema ,model,connect} from "mongoose";
+
 //creating interfaces for student
 
 interface Variant {
@@ -12,7 +12,7 @@ interface Inventory {
 }
 
 export interface Product {
-    productId:string;
+  
     name: string;
     description: string;
     price: number;

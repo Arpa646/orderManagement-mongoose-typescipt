@@ -1,5 +1,5 @@
-const Joi = require('joi');
 
+import Joi from'joi';
 // Define Joi schema for order data
 const orderSchema = Joi.object({
     email: Joi.string().email().required(),
